@@ -7,7 +7,8 @@
     "start": "tsc && node ./dist/app.js",
     "debug": "export DEBUG=* && npm start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --ext ts --exec ts-node app.ts"
+    "dev": "nodemon --ext ts --exec ts-node app.ts",
+    "ts-check": "tsc"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,6 @@
     "source-map-support": "^0.5.16",
     "ts-node": "^10.9.2",
     "tslint": "^6.0.0",
-    "typescript": "^3.7.5"
+    "typescript": "^5.7.3"
   }
 }
