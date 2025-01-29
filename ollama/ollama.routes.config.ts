@@ -1,6 +1,6 @@
 import { CommonRoutesConfig } from '../common/common.routes.config';
 import express from 'express';
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 export class OllamaRoutes extends CommonRoutesConfig {
     constructor(app: express.Application) {
