@@ -16,7 +16,7 @@ export class OllamaRoutes extends CommonRoutesConfig {
                         messages: [
                             {
                                 "role": "user", //"user" is a prompt provided by the user.
-                                "content": "hello" //user prompt should be written here
+                                "content": req.body.content //user prompt should be written here
                             }
                         ],
                     }, {
