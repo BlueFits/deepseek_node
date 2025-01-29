@@ -45,6 +45,7 @@ app.use(expressWinston.errorLogger({
 app.get('/', (req: express.Request, res: express.Response) => {
     res.status(200).send(`Server running at this  http://localhost:${port}`)
 });
+
 server.listen(port, () => {
     debugLog(`Server running at http://localhost:${port}`);
     routes.forEach((route: CommonRoutesConfig) => {
