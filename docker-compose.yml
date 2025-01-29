@@ -1,6 +1,8 @@
 services:
   express:
-    build: ./
+    build: 
+      context: ./apps/express
+      dockerfile: Dockerfile
     image: ollama-express
     ports: 
       - "3000:3000"
