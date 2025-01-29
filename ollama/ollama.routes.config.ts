@@ -11,8 +11,8 @@ export class OllamaRoutes extends CommonRoutesConfig {
         this.app.route(`/ollama`)
             .get(async (req: express.Request, res: express.Response, next: express.NextFunction) => {
                 try {
-                    const response = await axios.post(`http://localhost:11434/api/chat`, {
-                        model: "deepseek-r1:14b",
+                    const response = await axios.post(`http://ollama:11434/api/chat`, {
+                        model: "deepseek-r1:1.5b",
                         messages: [
                             {
                                 "role": "user", //"user" is a prompt provided by the user.
