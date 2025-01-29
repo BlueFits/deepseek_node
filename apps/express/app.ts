@@ -1,23 +1,27 @@
 import express from 'express';
-import * as http from 'http';
-import * as bodyparser from 'body-parser';
-import * as winston from 'winston';
-import * as expressWinston from 'express-winston';
-import cors from 'cors'
+import bodyparser from 'body-parser';
+import cors from 'cors';
+import winston from 'winston';
+import expressWinston from 'express-winston';
+import debug from 'debug';
 import { CommonRoutesConfig } from './common/common.routes.config';
 import { UsersRoutes } from './users/users.routes.config';
-import { OllamaRoutes } from "./ollama/ollama.routes.config";
-import debug from 'debug';
+import { OllamaRoutes } from './ollama/ollama.routes.config';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app: express.Application = express();
-const server: http.Server = http.createServer(app);
-const port = 3000;
+const server: any = require('http').Server(app);
+const port: number = parseInt(process.env.PORT as string, 10) || 3000;
 const routes: Array<CommonRoutesConfig> = [];
 const debugLog: debug.IDebugger = debug('app');
 
+// Middleware setup
 app.use(bodyparser.json());
 app.use(cors());
 
+// Logger setup
 app.use(expressWinston.logger({
     transports: [
         new winston.transports.Console()
@@ -28,9 +32,11 @@ app.use(expressWinston.logger({
     )
 }));
 
+// Route configuration
 routes.push(new UsersRoutes(app));
 routes.push(new OllamaRoutes(app));
 
+// Error logger setup
 app.use(expressWinston.errorLogger({
     transports: [
         new winston.transports.Console()
@@ -41,11 +47,12 @@ app.use(expressWinston.errorLogger({
     )
 }));
 
-
+// Root route
 app.get('/', (req: express.Request, res: express.Response) => {
-    res.status(200).send(`Server running at this  http://localhost:${port}`)
+    res.status(200).send(`Server running at http://localhost:${port}`);
 });
 
+// Start server
 server.listen(port, () => {
     debugLog(`Server running at http://localhost:${port}`);
     routes.forEach((route: CommonRoutesConfig) => {
