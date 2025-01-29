@@ -4,8 +4,9 @@ import * as bodyparser from 'body-parser';
 import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
 import cors from 'cors'
-import {CommonRoutesConfig} from './common/common.routes.config';
-import {UsersRoutes} from './users/users.routes.config';
+import { CommonRoutesConfig } from './common/common.routes.config';
+import { UsersRoutes } from './users/users.routes.config';
+import { OllamaRoutes } from "./ollama/ollama.routes.config";
 import debug from 'debug';
 
 const app: express.Application = express();
@@ -28,6 +29,7 @@ app.use(expressWinston.logger({
 }));
 
 routes.push(new UsersRoutes(app));
+routes.push(new OllamaRoutes(app));
 
 app.use(expressWinston.errorLogger({
     transports: [
@@ -41,7 +43,7 @@ app.use(expressWinston.errorLogger({
 
 
 app.get('/', (req: express.Request, res: express.Response) => {
-    res.status(200).send(`Server running at http://localhost:${port}`)
+    res.status(200).send(`Server running at this  http://localhost:${port}`)
 });
 server.listen(port, () => {
     debugLog(`Server running at http://localhost:${port}`);
