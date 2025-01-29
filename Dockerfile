@@ -1,13 +1,18 @@
-FROM node:slim AS build
+FROM node:20.11.0 AS build
 
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app
+# Copy only package files first (improves build caching)
+COPY package.json .
 
-RUN npm install
+# Ensure dependencies are installed for the correct architecture
+RUN npm install --arch=x64 --platform=linux
 
-COPY . /usr/src/app
+# Copy the rest of the project files
+COPY . .
 
+# Expose the application port
 EXPOSE 3000
 
+# Run the application
 CMD ["npm", "start"]
