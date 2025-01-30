@@ -5,7 +5,6 @@ import winston from 'winston';
 import expressWinston from 'express-winston';
 import debug from 'debug';
 import { CommonRoutesConfig } from './common/common.routes.config';
-import { UsersRoutes } from './users/users.routes.config';
 import { OllamaRoutes } from './ollama/ollama.routes.config';
 import dotenv from 'dotenv';
 
@@ -33,7 +32,6 @@ app.use(expressWinston.logger({
 }));
 
 // Route configuration
-routes.push(new UsersRoutes(app));
 routes.push(new OllamaRoutes(app));
 
 // Error logger setup
