@@ -37,6 +37,7 @@
     "cors": "^2.8.5",
     "debug": "^4.2.0",
     "dockerode": "^2.5.5",
+    "elevenlabs": "^1.50.4",
     "express": "^4.17.1",
     "express-winston": "^4.0.5",
     "shortid": "^2.2.16",

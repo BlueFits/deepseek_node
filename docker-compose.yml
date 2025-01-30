@@ -6,6 +6,10 @@ services:
     image: ollama-express
     ports: 
       - "3000:3000"
+    environment:
+      - ENV=container
+      - ELEVENLABS_API_KEY=sk_5c437d4e5ad3da9946bd785b71f86b6757ef946e552ce562
+      - PORT=3000
     depends_on:
       - ollama
   ollama:
@@ -14,6 +18,8 @@ services:
       - ollama:/root/.ollama
     ports: 
       - "11434:11434"
+    environment:
+      - OLLAMA_PORT=11434
 
 volumes:
   ollama:
