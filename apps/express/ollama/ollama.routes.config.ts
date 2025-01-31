@@ -11,7 +11,7 @@ export class OllamaRoutes extends CommonRoutesConfig {
         const ollamaController = new OllamaController();
 
         this.app.route(`/ollama`)
-            .get(ollamaController.getChatResponse);
+            .get(ollamaController.getChatResponseAudio);
 
         return this.app;
     }
